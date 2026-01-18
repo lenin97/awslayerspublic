@@ -73,7 +73,7 @@ A Lambda Layer packaging **Poppler utilities** for PDF processing inside AWS Lam
 
 ## Publishing a Lambda Layer
 
-This repository includes a **PowerShell script** to safely publish a pre-built Lambda Layer ZIP to AWS using the **AWS CLI**.
+This repository includes a **PowerShell script** (**layer2aws.ps1**) to safely publish a pre-built Lambda Layer ZIP to AWS using the **AWS CLI**.
 
 The script performs **validation, logging, and publishing** to ensure the layer is compatible with AWS Lambda requirements.
 
@@ -157,16 +157,6 @@ The layers were designed with **real-world constraints** in mind, including:
 - Serverless architecture design  
 - Document processing workflows  
 - Cloud-native infrastructure modularisation  
-
----
-
-## Notes
-
-If Mermaid diagrams are not rendered in your environment, the architecture is:
-
-Client → API Gateway → Lambda  
-Lambda → build-word-layer / lambda-poppler-layer  
-Output → S3 or API response
 
 ---
 
