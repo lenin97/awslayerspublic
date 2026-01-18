@@ -71,6 +71,66 @@ A Lambda Layer packaging **Poppler utilities** for PDF processing inside AWS Lam
 
 ---
 
+## Publishing a Lambda Layer
+
+This repository includes a **PowerShell script** to safely publish a pre-built Lambda Layer ZIP to AWS using the **AWS CLI**.
+
+The script performs **validation, logging, and publishing** to ensure the layer is compatible with AWS Lambda requirements.
+
+### Prerequisites
+
+Before running the script, ensure:
+
+- AWS CLI is installed and available in your `PATH`
+- You have a configured AWS profile with permission to publish Lambda layers
+- The layer ZIP file already exists (built via Docker or other tooling)
+- You are running PowerShell with execution permissions enabled
+
+### Configuration
+
+At the top of the script, update the configuration section for each layer:
+
+- `LayerName` — Name of the Lambda Layer in AWS  
+- `LayerZip` — ZIP file containing the layer contents  
+- `Description` — Short description of what the layer provides  
+- `CompatibleRuntimes` — Python runtimes supported by the layer  
+- `CompatibleArchitectures` — CPU architecture (e.g. `x86_64`)  
+- `AwsProfile` — AWS CLI profile to use  
+- `AwsRegion` — AWS region where the layer will be published  
+
+Each layer should be published **independently** with its own configuration.
+
+### What the Script Does
+
+1. **Validates prerequisites**
+   - Confirms the AWS CLI is installed
+
+2. **Validates the ZIP structure**
+   - Ensures the ZIP contains either:
+     - `python/`
+     - or `opt/python/`
+   - This matches AWS Lambda Layer requirements
+
+3. **Publishes the layer**
+   - Uses `aws lambda publish-layer-version`
+   - Sets compatible runtimes and architectures
+   - Outputs the published layer version details
+
+4. **Fails fast on errors**
+   - Any validation or AWS error stops execution immediately
+
+### Result
+
+After successful execution:
+
+- A new **Lambda Layer version** is created in AWS
+- The layer can be attached to any Lambda function
+- The layer becomes reusable across multiple services and environments
+
+This approach ensures **repeatable, auditable, and CI/CD-friendly** Lambda Layer publishing.
+
+---
+
 ## Why This Repository Matters
 
 This project demonstrates practical experience with:
