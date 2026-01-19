@@ -1,5 +1,17 @@
 # AWS Lambda Layers for Document Processing
 
+## About This README
+
+This README explains the purpose, architecture, and usage of this repository, which provides
+production-ready AWS Lambda Layers for document processing. It covers:
+
+- The overall serverless architecture where the layers are used
+- The functionality of each included Lambda Layer
+- How to publish the layers to AWS using a PowerShell script
+- The technical and professional value of this repository
+
+---
+
 This repository contains **production-ready AWS Lambda Layers** designed for **document processing and conversion workflows** in serverless environments.
 
 All layers are built using **Docker-based, reproducible build pipelines** to ensure compatibility with the **AWS Lambda Linux runtime** and to enable reuse across multiple Lambda functions.
